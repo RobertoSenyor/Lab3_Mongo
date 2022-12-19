@@ -1,0 +1,12 @@
+name.auto()	surname.auto()	fathername.auto()	serial_of_passport.int32()	number_of_passport.int32()	telephone.auto()	address_id.int32()
+Irma	Randolph	Hamilton	4976	431712	+7-(952)-666-75-81	1
+Hiram	Ferguson	Jonah	2466	860077	+7-(975)-252-96-42	2
+Moana	Wong	Buckminster	3449	423915	+7-(961)-958-86-51	3
+Vernon	Mccray	Hoyt	3348	231517	+7-(997)-324-74-48	4
+Keaton	Pugh	Jason	8659	579564	+7-(952)-486-48-75	5
+Graham	Cunningham	Cullen	2966	236273	+7-(982)-432-56-20	6
+Dough	qwerty	qwerty	1234	123456	+7-(913)-200-48-20	7
+Yael	Mcpherson	Burke	9595	418317	+7-(973)-661-51-58	8
+Hanna	Morin	Marvin	6916	612258	+7-(943)-535-33-40	9
+Kent	Kent	Ira	7425	719569	+7-(978)-265-77-92	10
+qwerty	qwerty	qwerty	5015	470025	777	3
