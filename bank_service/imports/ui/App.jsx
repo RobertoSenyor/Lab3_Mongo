@@ -1,11 +1,18 @@
 import React from 'react';
-import { Hello } from './Hello.jsx';
-import { Info } from './Info.jsx';
+import { Cookies } from 'meteor/ostrio:cookies';
+import { Auth } from './Auth';
+import { Space } from './Space';
 
-export const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello/>
-    <Info/>
-  </div>
-);
+const cookie = new Cookies();
+
+export const App = () => {
+  this.state = {
+    login: false
+  }
+  if(!cookie.has('user')) {
+    return <Auth/>
+  } else {
+    return <Space/>
+  }
+};
+
