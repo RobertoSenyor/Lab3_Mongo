@@ -1,6 +1,6 @@
 import React from 'react';
 import { Cookies } from 'meteor/ostrio:cookies';
-import {UsersCollection} from "../api/UsersCollection";
+import { UsersCollection } from "../api/UsersCollection";
 
 const cookie = new Cookies();
 
@@ -24,19 +24,28 @@ export class Auth extends React.Component {
 	buttonLogin() {
 		let check = UsersCollection.find({login: this.state.inputsUser[0], password: this.state.inputsUser[1]}).count();
 		if(check == 1) {
-			cookie.set('user', this.state.inputsUser[0]);
-			location.reload();
+			if(this.state.inputsUser[0] == 'admin')
+			{
+				cookie.set('admin', this.state.inputsUser[0]);
+				location.reload();
+			}
+			else
+			{
+				cookie.set('user', this.state.inputsUser[0]);
+				location.reload();
+			}
 		} else {
-			alert("Неправильный логин или пароль");
+			cookie.remove('user');
+			cookie.remove('admin');
+			alert(check + " " + "Неправильный логин или пароль");
 		}
 	}
-
 
 	render() {
 		return <div>
 			<input type="text" placeholder="Enter login" onChange={(event) => this.inputUser(0, event.target.value)}/>
 			<input type="text" placeholder="Enter password" onChange={(event) => this.inputUser(1, event.target.value)}/>
-			<button onClick={this.buttonLogin}>Войти</button>
+			<button class="table-button" onClick={this.buttonLogin}>Войти</button>
 		</div>
 	}
 }

@@ -46,6 +46,12 @@
       ],
       "meteor/react-meteor-data": [
         "/home/romanus/.meteor/packages/react-meteor-data/2.6.0/web.browser/index.js"
+      ],
+      "meteor/session": [
+        "/home/romanus/.meteor/packages/session/1.2.1/web.browser/session.js"
+      ],
+      "meteor/ostrio:cookies": [
+        "/home/romanus/.meteor/packages/ostrio_cookies/2.7.2/web.browser/cookies.js"
       ]
     }
   },

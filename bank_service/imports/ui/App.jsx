@@ -9,10 +9,10 @@ export const App = () => {
   this.state = {
     login: false
   }
-  if(!cookie.has('user')) {
-    return <Auth/>
-  } else {
+  if(cookie.has('user') || cookie.has('admin')) {
     return <Space/>
+  } else {
+    return <Auth/>
   }
 };
 

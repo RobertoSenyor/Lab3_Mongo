@@ -1,0 +1,42 @@
+version: '2'
+services:
+  mongorsn1:
+    container_name: mongors1n1
+    image: mongo
+    command: mongod --shardsvr --replSet mongors1 --dbpath /var/lib/mongodb --port 27017
+    ports:
+      - 27017:27017
+    expose:
+      - "27017"
+  mongors1n2:
+    container_name: mongors2n1
+    image: mongo
+    command: mongod --shardsvr --replSet mongors2 --dbpath /var/lib/mongodb --port 27017
+    ports:
+      - 27027:27017
+    expose:
+      - "27017"
+    environment:
+      TERM: xterm
+  mongocfg1:
+      container_name: mongocfg1
+      image: mongo
+      command: mongod --configsvr --replSet mongors1conf --dbpath /var/lib/mongodb --port 27017
+      expose:
+        - "27017"
+  mongos1:
+      container_name: mongos1
+      image: mongo
+      depends_on:
+        - mongocfg1
+      command: mongos --configdb mongors1conf/mongocfg1:27017 --port 27017 --bind_ip_all
+      ports:
+        - 27019:27017
+      expose:
+        - "27017"
+
+#mongocfg1 docker exec -it mongocfg1 bash -c "echo 'rs.initiate({"_id":"mongors1conf","configsvr":true,"members":[{"_id":0,"host":"mongocfg1"}]})' | mongosh"
+#mongors1n1 docker exec -it mongors1n1 bash -c "echo 'rs.initiate({"_id":"mongors1","members":[{"_id":0,"host":"mongors1n1"}]})' | mongo"
+#mongors2n1 docker exec -it mongors2n1 bash -c "echo 'rs.initiate({"_id":"mongors2","members":[{"_id":0,"host":"mongors2n1"}]})' | mongo"
+#mongos1 docker exec -it mongos1 bash -c "echo 'sh.addShard(\"mongors1/mongors1n1\")' | mongo"
+#mongos1 docker exec -it mongos1 bash -c "echo 'sh.addShard(\"mongors2/mongors2n1\")' | mongo"
